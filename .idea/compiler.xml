@@ -20,7 +20,6 @@
       <module name="messenger" target="11" />
       <module name="messenger.main" target="11" />
       <module name="messenger.test" target="11" />
-      <module name="testing" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
