@@ -11,9 +11,16 @@
         <module name="application" />
         <module name="jmp-cloud-bank-impl" />
         <module name="jmp-cloud-service-impl" />
+        <module name="testing" />
         <module name="jmp-dto" />
         <module name="jmp-bank-api" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="messenger" target="11" />
+      <module name="messenger.main" target="11" />
+      <module name="messenger.test" target="11" />
+      <module name="testing" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
