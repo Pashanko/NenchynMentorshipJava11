@@ -11,7 +11,7 @@ public class Template {
     private final String pattern;
 
     public Template(String pattern) {
-        pattern = pattern.replaceAll("#\\{value}", "#{tag}");
+        pattern = pattern.replaceAll("#\\{(\\w+)}", "#{tag}");
         this.pattern = pattern;
     }
 }

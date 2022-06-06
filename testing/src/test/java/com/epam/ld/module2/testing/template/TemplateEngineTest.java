@@ -3,6 +3,8 @@ package com.epam.ld.module2.testing.template;
 import com.epam.ld.module2.testing.Client;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.mockito.Spy;
 
 import java.util.InvalidPropertiesFormatException;
@@ -23,9 +25,10 @@ public class TemplateEngineTest {
         templateEngine = spy(new TemplateEngine());
     }
 
-    @Test
-    void generateMessageValidParams() throws InvalidPropertiesFormatException {
-        Template template = new Template("#{value} #{value} #{value}");
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/template.csv")
+    void generateMessageValidParams(Template template) throws InvalidPropertiesFormatException {
         List<String> tags = List.of("tag", "tag", "tag");
 
         doReturn(tags).when(templateEngine).getTags();
@@ -34,9 +37,9 @@ public class TemplateEngineTest {
         assertNotNull(result);
     }
 
-    @Test
-    void generateMessageInvalidParamsTooManyTags() {
-        Template template = new Template("#{value} #{value} #{value}");
+    @ParameterizedTest
+    @CsvFileSource(resources = "/template.csv")
+    void generateMessageInvalidParamsTooManyTags(Template template) {
         List<String> tags = List.of("tag", "tag", "tag", "tag");
 
         doReturn(tags).when(templateEngine).getTags();
@@ -44,9 +47,9 @@ public class TemplateEngineTest {
                 () -> templateEngine.generateMessage(template, new Client()));
     }
 
-    @Test
-    void generateMessageInvalidParamsNotEnoughTags() {
-        Template template = new Template("#{value} #{value} #{value}");
+    @ParameterizedTest
+    @CsvFileSource(resources = "/template.csv")
+    void generateMessageInvalidParamsNotEnoughTags(Template template) {
         List<String> tags = List.of("tag", "tag");
 
         doReturn(tags).when(templateEngine).getTags();
